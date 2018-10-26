@@ -19,7 +19,7 @@ router.post('/user/save', async (ctx, next) => {
       const save = await userInfoController.save(obj)
       ctx.response.body = responseStandard.success(save)
     } else {
-      ctx.response.body = responseStandard.success(query)
+      ctx.response.body = responseStandard.success(query, {code: 110, msg: 'openid already exits'})
     }
   } catch (error) {
     ctx.response.body = responseStandard.fail(error)
