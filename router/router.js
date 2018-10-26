@@ -74,14 +74,21 @@ router.get('/register/query/:openid', async (ctx, next) => {
 router.post('/register/update', async (ctx, next) => {
   try {
     const obj = JSON.parse(ctx.request.rawBody)
-    console.log('obj._id', obj._id)
-    const query = await registerController.queryById(obj._id)
-    if (query === null) {
-      ctx.response.body = responseStandard.other(query, {code: 998, msg: 'queryById is not exits'})
-    } else {
-      const update = await registerController.updateOne(obj)
-      ctx.response.body = responseStandard.success(update)
-    }
+    delete obj['deleted']
+    console.log('obj', obj)
+    const update = await registerController.updateOne(obj)
+    ctx.response.body = responseStandard.success(update)
+  } catch (error) {
+    ctx.response.body = responseStandard.fail(error)
+  }
+})
+
+router.get('/register/delete/:id', async (ctx, next) => {
+  try {
+    const id = ctx.params.id
+    const update = await registerController.deleteOne(id)
+    console.log('update', update)
+    ctx.response.body = responseStandard.other(update, {code: 100, msg: 'the record has deleted'})
   } catch (error) {
     ctx.response.body = responseStandard.fail(error)
   }

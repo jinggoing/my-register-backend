@@ -8,14 +8,24 @@ module.exports = {
     return register.save()
   },
   query: async function (obj) {
+    // obj.deleted = false
+    console.log(obj)
     return Model.find(obj)
   },
   queryById: async function (_id) {
     return Model.findOne({_id: _id})
   },
   updateOne: async function (obj) {
+    obj.deleted = false
     if (obj._id) {
       return Model.updateOne({ _id: obj._id }, obj)
+    } else {
+      return '_id is null'
+    }
+  },
+  deleteOne: async function (id) {
+    if (id) {
+      return Model.updateOne({ _id: id }, {deleted: true})
     } else {
       return '_id is null'
     }

@@ -8,5 +8,11 @@ module.exports = new Schema({
   phone: String,
   email: String,
   thirdParty: String,
-  remarks: String
+  remarks: String,
+  deleted: {
+    type: Boolean,
+    default: () => {
+      return false
+    }
+  }
 })
