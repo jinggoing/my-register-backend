@@ -27,5 +27,5 @@ app.use(cors({
 app.use(bodyParser())  // 解析request的body
 
 app.use(router.routes())
-app.listen(9000)
-console.log('app started at port 9000...')
+app.listen(3004)
+console.log('app started at port 3004...')
