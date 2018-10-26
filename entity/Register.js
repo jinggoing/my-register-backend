@@ -7,5 +7,6 @@ module.exports = new Schema({
   website: String,
   phone: String,
   email: String,
-  thirdParty: String
+  thirdParty: String,
+  remarks: String
 })
