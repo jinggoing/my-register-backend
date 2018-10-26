@@ -8,8 +8,7 @@ module.exports = {
     return register.save()
   },
   query: async function (obj) {
-    // obj.deleted = false
-    console.log(obj)
+    obj.deleted = false
     return Model.find(obj)
   },
   queryById: async function (_id) {
